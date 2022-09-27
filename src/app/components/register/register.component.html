@@ -1,0 +1,88 @@
+<form [formGroup]="registrationform" (ngSubmit)="Signupform()" class="p-2">
+    <div class="row">
+        <div class="col p 2 mb-3 text-center bg-light">
+            Register
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="col">
+
+            <span class="label">firstname</span>
+
+            <input class="form-control" type="text" name="" id="firstname" formControlName="firstname">
+            <div class="form-check text-danger" *ngIf="Firstname.errors?.['required'] && (Firstname.touched||Firstname.dirty)">
+                Firstname is required
+            </div>
+            <div class="form-check text-danger" *ngIf="Firstname.touched && Firstname.errors?.['pattern']">
+                First name is not valid
+            </div>
+            <div class="form-text text-danger" *ngIf="Firstname.errors?.['minlength']"></div>
+        </div>
+        <div class="col">
+            <label>lastname</label>
+            <input class="form-control" type="text " id="lastname" formControlName="lastname">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="Email">Email</label>
+            <input class="form-control" type="email" name="Email" id="email" placeholder="n1234@xyz.com" formControlName="Email" required="true">
+            <div class="form-text text-danger" *ngIf="Email.errors?.['required']&& Email.touched">
+                Email required
+            </div>
+                <div class="form-text text-danger" *ngIf="Email.errors?.['pattern']&& Email.touched">
+                enter valid email
+             </div>
+        </div>
+    
+        
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="mobile">Mobile Number</label>
+            <input type="tel" id="mobile" name="mobile" placeholder="12xxxxxxx0" formControlName="Mobile">
+            <div class="form-text text-danger" *ngIf="Mobile.errors?.['pattern'] && Mobile.touched">
+                Enter valid mobile number
+            </div>
+        </div>
+        <div class="col">
+            <div class="">Gender</div>
+            <div class="  form-check form-check-inline">
+                <label class="form-check-label" for="male">male</label>
+                <input type="radio" class="form-check-input" name="Gender" id="male" value="m" formControlName="Gender">
+            </div>
+
+            <div class=" form-check  form-check-inline">
+                <label class="form-check-label" for="female">female</label>
+                <input type="radio" class="form-check-input" name="Gender" id="female" value="f"  formControlName="Gender">
+                
+            </div>
+            <div class="form-text text-danger" *ngIf="Gender.errors?.['required'] && Gender.touched">
+                Select Gender
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col mb-3">
+            <label for="password" class="form-label"> password</label>
+            <input type="password" id="password" name="password" placeholder="Ex:Abc@1234$" class=" form-control rounded" formControlName="password" required>
+            <div class="form-text text-danger" *ngIf="Password.errors?.['required'] && Password.touched  ">
+                Enter valid password
+            </div>
+        </div>
+        <div class="col mb-3">
+            <label for="rpassword" class="form-label">Repeat password</label>
+            <input type="password" id="rpassword"  name="rpassword"  class=" form-control rounded" formControlName="repeat_password">
+            <div class="form-text text-danger" [ngStyle]="{'display': rpwd}">
+                enter password
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <button type="submit" [disabled]="registrationform.invalid" class="btn btn-primary btn-lg white">Submit </button>
+    </div>
+
+</form>
