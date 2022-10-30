@@ -1,3 +1,7 @@
+<p class="text-center fs-3" [ngClass]="isAccountCreated? 'text-success pb-1':'text-danger pb-1'">
+{{displayMsg}}
+</p>
+
 <form [formGroup]="registrationform" (ngSubmit)="Signupform()" class="p-2">
     <div class="row">
         <div class="col p 2 mb-3 text-center bg-light">
@@ -23,6 +27,13 @@
         <div class="col">
             <label>lastname</label>
             <input class="form-control" type="text " id="lastname" formControlName="lastname">
+            <div class="form-check text-danger" *ngIf="Lastname.errors?.['required'] && (Lastname.touched||Lastname.dirty)">
+                Lastname is required
+            </div>
+            <div class="form-check text-danger" *ngIf="Lastname.touched &&Lastname.errors?.['pattern']">
+                Lastname is not valid
+            </div>
+            
         </div>
     </div>
     <div class="row">
@@ -69,16 +80,21 @@
         <div class="col mb-3">
             <label for="password" class="form-label"> password</label>
             <input type="password" id="password" name="password" placeholder="Ex:Abc@1234$" class=" form-control rounded" formControlName="password" required>
-            <div class="form-text text-danger" *ngIf="Password.errors?.['required'] && Password.touched  ">
-                Enter valid password
+            <div class="form-text text-danger" *ngIf="Password.errors?.['required'] && Password.touched  " >
+                min length is 6
             </div>
+            <div class="form-text text-danger" *ngIf="Password.errors?.['pattern'] && Password.touched">
+                enter valid password
+            </div>
+            
         </div>
         <div class="col mb-3">
             <label for="rpassword" class="form-label">Repeat password</label>
             <input type="password" id="rpassword"  name="rpassword"  class=" form-control rounded" formControlName="repeat_password">
-            <div class="form-text text-danger" [ngStyle]="{'display': rpwd}">
-                enter password
+            <div class="form-text text-danger" [ngStyle]="{'display': rpwd}" >
+                password do not match
             </div>
+           
         </div>
     </div>
     <div class="row">

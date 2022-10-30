@@ -1,0 +1,35 @@
+<form class="" [formGroup]="loginform" (ngSubmit)="LoginValidation()"  class="p-2">
+    <div class="row ">
+        <div class="col text-center">
+                Login
+        </div>
+    </div>
+<div class="row">
+<div class="col">
+    <label for="mail" class="form-label">
+        Email
+    </label>
+
+        <input type="email" class=" form-control input-lg rounded" placeholder="abcd@gmail.com" id="mail" formControlName="mail"> 
+    
+    </div>
+
+</div>
+<div class="row">
+<div class="col">
+    <label for="pwd" class="form-label">password </label>
+    <input type="password"  class="form-control rounded input-lg" id="pwd" formControlName="pwd">
+</div>
+</div>
+<br>
+<div class="row">
+    
+        <button type="submit" [disabled]="loginform.invalid"class="btn btn-primary text-center">Submit</button>
+
+</div>
+<div class="row">
+    <div class="col">
+        <span>Don't have an account?</span><a routerLink="/register">Register</a>
+    </div>
+</div>
+</form>
